@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Twitter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <script src="main.js"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul id="navOptions">
+        <li>Página Inicial</li>
+        <li>Moments</li>
+        <li>Notificações</li>
+        <li>Mensagens</li>
+      </ul>
+      <i class="fab fa-twitter"></i>
+      <div>
+        <input type="text" class="search" placeholder="Busca no Twitter">
+        <img src="" alt="" id="userPhoto">
+        <button id="tweet">Tweetar</button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <aside id="asideLeft">
+      <div id="profileinfo">
+        <img src="" alt="">
+        <img src="" alt="">
+        <p><span id="name">Laboratoria</span> /n <span id="userName">@laboratoria</span></p>
+        <p>Tweets <span class="counters" id="tweetsCount">Tweets</span></p>
+        <p>Seguindo <span class="counters" id="followingCount"></span></p>
+        <p>Seguidores <span class="counters" id="followersCount"></span></p>
+      </div>
+      <div id="trendTopics">
+        <h2>Assuntos do momento: São Paulo <a href="">Alterar</a></h2>
+        <p><a href="" class="trendSaoPaulo">#GatosSãoLindos</a>75,8 mil Tweets</p>
+        <p><a href="" class="trendSaoPaulo">#Laboratoria</a>11,7 mil Tweets</p>
+        <p><a href="" class="trendSaoPaulo">#VoltaFeriado</a>Feriado acaba e chega o momento de entregar os desafios.</p>
+        <p><a href="" class="trendSaoPaulo">#ChocolateBelga</a>15,3 mil Tweets</p>
+        <p><a href="" class="trendSaoPaulo">#CSS</a>7.598 Tweets</p>
+        <p><a href="" class="trendSaoPaulo">#CineSesc</a>Festival Internacional de Mulheres no Cinema exibe 28 filmes</p>
+        <p><a href="" class="trendSaoPaulo">#Amor</a>58,1 mil Tweets</p>
+        <p><a href="" class="trendSaoPaulo">#GoVegan</a>Já são quase 30 milhões de brasileiros adeptos de uma alimentação Cruelty Free</p>
+        <p><a href="" class="trendSaoPaulo">#Javascript</a>18,6 mil Tweets</p>
+        <p><a href="" class="trendSaoPaulo">#DineArrasou</a>5.658 Tweets</p>
+      </div>
+    </aside>
+    <section id="mainSection">
+      <div id="whatsHappening">
+        <img src="" alt="">
+        <textarea name="newTweet" id="newTweet" cols="30" rows="10"></textarea>
+        <div>
+          <input type="submit" id="submit" value="Tweetar">
+        </div>
+      </div>
+      <div id="feed">
+        <div class="feedTweet">
+          <img src="" alt="">
+          <p><span class="tweetName"></span><span class="tweetUserName"></span></p>
+          <p class="publishedTweet"></p>
+          <div class="interactOptions">
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <aside id="asideRight">
+      <div id="whoToFollow">
+        <h2>Quem seguir <a href="">Atualizar</a><a href="">Ver todos</a></h2>
+        <div id="followSugestion">
+          <img src="" alt="">
+          <p><span class="tweetName"></span><span class="tweetUserName"></span></p>
+          <input type="button" value="Seguir">
+          <p><a href="">Conectar outras listas de contatos</a></p>
+        </div>
+      </div>
+      <div id="aboutTwitter">
+        <p>2018 Twitter <a href="">Sobre</a> <a href="">Central de Ajuda</a> <a href="">Termos</a> 
+        <a href="">Política de privacidade</a> <a href="">Cookies</a> <a href="Informações de Anúncios"></a> <a href="">Marca</a> <a href="">Blog</a> <a href="">Status</a> <a href="">Aplicativos</a> <a href="">Empregos</a> <a href="Marketing"></a> <a href="">Empresas</a> <a href="">Programadores</a></p>
+        <p><a href="">Anuncie com o Twitter</a></p>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>
