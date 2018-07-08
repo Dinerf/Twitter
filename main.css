@@ -213,11 +213,14 @@ main section {
 }
 #feed {
   background-color: white;
+  display: flex;
+  flex-direction: column-reverse;
 }
 .feedTweet {
   padding: 2%;
+  border-bottom: 1px solid #E6ECF0;
 }
-div.feedTweet > div {
+.tweetConteiner {
   width: 85%;
   display: inline-block;
   padding: 0 1%;
