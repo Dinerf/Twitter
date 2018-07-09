@@ -30,8 +30,23 @@ function resize() {
   }
 }
 
+function setTime() {
+  var data = new Date();
+  var hour = JSON.stringify(data.getHours());
+  if(hour.length === 1) {
+    hour = "0" + hour;
+  }
+  var min = JSON.stringify(data.getMinutes());
+  if(min.length === 1) {
+    min = "0" + min;
+  }
+  var time = hour + ":" + min;
+
+  return time;
+}
+
 function publishTweet() {
-  var feedTweet = document.createElement("div");
+   var feedTweet = document.createElement("div");
   feedTweet.className = "feedTweet"
   
   var img = document.createElement("img");
@@ -52,6 +67,11 @@ function publishTweet() {
   userName.className = "userName";
   userName.textContent = "@laboratoria";
   tweetConteiner.appendChild(userName);
+
+  var now = document.createElement("span");
+  now.className = "now";
+  now.textContent = " - " + setTime();
+  tweetConteiner.appendChild(now);
   
   var publishedTweet = document.createElement("p");
   publishedTweet.className = "publishedTweet";
