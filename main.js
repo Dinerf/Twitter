@@ -1,3 +1,15 @@
+function validateTweet() {
+  var myNewTweet = document.getElementById("newTweet").value;
+  var counter = myNewTweet.length;
+  document.getElementById("counter").innerHTML = 140 - counter;
+  counter = document.getElementById("counter").innerHTML;
+  if(parseInt(counter) < 140) {
+    document.getElementById("submit").removeAttribute("disabled");
+  } else {
+    document.getElementById("submit").setAttribute("disabled", "");
+  }
+}
+
 function publishTweet() {
   var feedTweet = document.createElement("div");
   feedTweet.className = "feedTweet"
@@ -13,7 +25,7 @@ function publishTweet() {
   
   var name = document.createElement("span");
   name.className = "name";
-  name.textContent = "Laboratoria";
+  name.textContent = "Laboratoria ";
   tweetConteiner.appendChild(name);
   
   var userName = document.createElement("span");
@@ -49,4 +61,5 @@ function publishTweet() {
 
   document.getElementById("feed").appendChild(feedTweet);   
   document.getElementById("newTweet").value = "";
+  document.getElementById("submit").setAttribute("disabled", "");
 }

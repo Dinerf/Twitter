@@ -176,6 +176,7 @@ main section {
 #whatsHappening {
   background-color: #E8F4FB;
   padding: 2% 2% 1% 5%;
+  position: relative;
 }
 #newTweet {
   border: none;
@@ -186,6 +187,14 @@ main section {
   line-height: 100%;
   font-size: 110%;
   color: #1B95E0;
+}
+#counter {
+  position: absolute;
+  right: 20px;
+  bottom: 55px;
+  width: fit-content;
+  color: #66757f;
+  font-size: 100%;
 }
 #submitBar {
   margin: 3% 2% 0% 9%;
@@ -311,4 +320,7 @@ input#followButton:hover {
 }
 #aboutTwitter p:last-child a {
   color: #1B95E0;
+}
+input[type="button"]:disabled {
+  background: #AAD7F3;
 }
