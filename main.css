@@ -94,7 +94,7 @@ header div:last-child {
 header div .userPhoto {
   margin: -1% 0 1%;
 }
-#tweet, #submit {
+#tweet, #submit, #submitBox {
   display: inline-block;
   width: 15%;
   padding: 1%;
@@ -118,9 +118,6 @@ main aside {
 }
 main section {
   width: 49.5%;
-}
-#asideLeft {
-
 }
 #profileInfo {
   background-color: white;
@@ -170,39 +167,80 @@ main section {
   font-size: 120%;
   font-weight: 800;
 }
-#mainSection {
-
+#backColor {
+  width: 100%;
+  height: 1000px;
+  background-color: #000000c7;
+  position: fixed;
+  top: 0%;
+  right: 0;
+  display: none;
 }
-#whatsHappening {
+#tweetBox {
+  border-radius: 10px;
+  background-color: white;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 48%;
+}
+#close {
+  position: absolute;
+  top: 8%;
+  right: 2%;
+}
+#titleBox {
+  padding: 2%;
+  font-size: 125%;
+  font-weight: 800;
+  color: black;
+  text-align: center;
+}
+#whatsHappening, #whatsHappeningBox {
   background-color: #E8F4FB;
   padding: 2% 2% 1% 5%;
   position: relative;
+  border-radius: 10px;
 }
-#newTweet {
+#whatsHappeningBox {
+  padding-left: 2.5%;
+}
+#newTweet, #newTweetBox {
   border: none;
   border: 1px solid #93D7FA;
   border-radius: 10px;
   margin: 0 0 0 2%;
-  padding: 2% 0;
-  line-height: 100%;
+  padding: 1% 0 0;
+  line-height: 150%;
   font-size: 110%;
   color: #1B95E0;
   overflow: hidden;
+  resize: none;
+  width: 90%;
+  height: 35px;
 }
-#counter {
+#newTweetBox {
+  height: 80px;
+}
+#counter, #counterBox {
   position: absolute;
-  right: 50px;
+  right: 25px;
   bottom: 55px;
   width: fit-content;
   color: #66757f;
   font-size: 100%;
+  display: none;
 }
-#submitBar {
+#submitBar, #submitBarBox {
   margin: 3% 2% 0% 9%;
   width: 90%;
   text-align: right;
-  display: flex;
+  display: none;
   justify-content: space-between;
+}
+#submitBarBox, #counterBox {
+  display: flex;
 }
 .icons {
   width: 40%;
@@ -217,9 +255,6 @@ main section {
 }
 .icon-bars {
   font-size: 80%;
-}
-#submit {
-  
 }
 #feed {
   background-color: white;
@@ -249,18 +284,12 @@ main section {
 .publishedTweet {
   color: black;
 }
-.publishedOptions {
-
-}
 .interactOptions {
   width: 50%;
   padding: 3% 0.5% 0;
   font-size: 150%;
   display: flex;
   justify-content: space-between;
-}
-#asideRight {
-
 }
 #whoToFollow {
   background-color: white;
@@ -322,6 +351,9 @@ input#followButton:hover {
 #aboutTwitter p:last-child a {
   color: #1B95E0;
 }
-input[type="button"]:disabled {
-  background: #AAD7F3;
+button#submit:disabled {
+  background-color: #AAD7F3;
+}
+button#submitBox:disabled {
+  background-color: #AAD7F3;
 }

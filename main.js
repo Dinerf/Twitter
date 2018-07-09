@@ -1,35 +1,88 @@
+var newTweet = document.getElementById("newTweet");
+var newTweetBox = document.getElementById("newTweetBox");
+
+window.onload = newTweet.value = "";
+newTweet.onfocus = expand;
+newTweet.onblur = contract;
+newTweet.addEventListener("input", validateTweet);
+newTweet.addEventListener ("input", charCount);
+newTweet.addEventListener("input", resize);
+document.getElementById("submit").addEventListener("click", setTime);
+document.getElementById("submit").addEventListener("click", publishTweet);
+
+newTweetBox.addEventListener("input", validateTweet);
+newTweetBox.addEventListener ("input", charCount);
+newTweetBox.addEventListener("input", resize);
+document.getElementById("submitBox").addEventListener("click", setTime);
+document.getElementById("submitBox").addEventListener("click", publishTweet);
+document.getElementById("tweet").addEventListener("click", openTweetBox);
+document.getElementById("close").addEventListener("click", closeTweetBox);
+
+function expand () {
+  document.getElementById("counter").style.display = "initial";
+  document.getElementById("submitBar").style.display = "flex";
+  document.getElementById("newTweet").style.border = "2px solid #93D7FA";
+  document.getElementById("newTweet").style.height = "80px";
+}
+
+function contract () {
+  var myNewTweet = newTweet.value;
+  if(myNewTweet.trim().length <= 0 && newTweet.onblur) {
+    document.getElementById("counter").style.display = "none";
+    document.getElementById("submitBar").style.display = "none";
+    document.getElementById("newTweet").style.border = "1px solid #93D7FA";
+    document.getElementById("newTweet").style.height = "35px";
+    document.getElementById("newTweetBox").style.height = "35px";
+
+  }
+}
+
+var counter = "";
 function validateTweet() {
-  var myNewTweet = document.getElementById("newTweet").value;
-  var counter = myNewTweet.length;
+  var myNewTweet = newTweet.value + newTweetBox.value;
+  counter = myNewTweet.length;
   document.getElementById("counter").innerHTML = 140 - counter;
+  document.getElementById("counterBox").innerHTML = 140 - counter;
   counter = document.getElementById("counter").innerHTML;
-  if(parseInt(counter) < 140 && parseInt(counter) >= 0) {
-    document.getElementById("submit").removeAttribute("disabled");
+  counter = document.getElementById("counterBox").innerHTML;
+  if(myNewTweet.trim().length > 0) {
+    if(parseInt(counter) < 140 && parseInt(counter) >= 0) {
+      document.getElementById("submit").removeAttribute("disabled");
+      document.getElementById("submitBox").removeAttribute("disabled");
+    } else {
+      document.getElementById("submit").setAttribute("disabled", "");
+      document.getElementById("submitBox").setAttribute("disabled", "");
+    }
   } else {
     document.getElementById("submit").setAttribute("disabled", "");
+    document.getElementById("submitBox").setAttribute("disabled", "");
   }
-  if(parseInt(counter) > 20) {
+}
+
+function charCount() {
+  counter = parseInt(counter);
+  if(counter > 20) {
     document.getElementById("counter").style.color = "#66757f";
+    document.getElementById("counterBox").style.color = "#66757f";
   }
-  if(parseInt(counter) <= 20 && parseInt(counter) > 10) {
+  if(counter <= 20 && counter > 10) {
     document.getElementById("counter").style.color = "orange";
+    document.getElementById("counterBox").style.color = "orange";
   }
-  if (parseInt(counter) <= 10) {
+  if(counter <= 10) {
     document.getElementById("counter").style.color = "red";
+    document.getElementById("counterBox").style.color = "red";
   }
-  resize()
 }
 
 function resize() {
-  var newTweet = document.getElementById("newTweet");
-  if(newTweet.scrollHeight > newTweet.offsetHeight) {
-    newTweet.rows += 1;
-  }
-  if(newTweet.scrollHeight < newTweet.offsetHeight) {
-    newTweet.rows -= 1;
-  }
+  newTweet.style.height = "80px";
+  newTweet.style.height = newTweet.scrollHeight + "px";
+  newTweetBox.style.height = "80px";
+  newTweetBox.style.height = newTweetBox.scrollHeight + "px";
 }
 
+var time = "";
 function setTime() {
   var data = new Date();
   var hour = JSON.stringify(data.getHours());
@@ -40,13 +93,27 @@ function setTime() {
   if(min.length === 1) {
     min = "0" + min;
   }
-  var time = hour + ":" + min;
+  time = hour + ":" + min;
+}
 
-  return time;
+function openTweetBox() {
+  document.getElementById("newTweet").value = "";
+  document.getElementById("counter").innerHTML = "140";
+  document.getElementById("counterBox").innerHTML = "140";
+  document.getElementById("backColor").style.display = "flex";
+  contract();
+}
+
+function closeTweetBox() {
+  document.getElementById("newTweetBox").value = "";
+  document.getElementById("counter").innerHTML = "140";
+  document.getElementById("counterBox").innerHTML = "140";
+  document.getElementById("backColor").style.display = "none";
+  contract();
 }
 
 function publishTweet() {
-   var feedTweet = document.createElement("div");
+  var feedTweet = document.createElement("div");
   feedTweet.className = "feedTweet"
   
   var img = document.createElement("img");
@@ -70,13 +137,13 @@ function publishTweet() {
 
   var now = document.createElement("span");
   now.className = "now";
-  now.textContent = " - " + setTime();
+  now.textContent = " - " + time;
   tweetConteiner.appendChild(now);
   
   var publishedTweet = document.createElement("p");
   publishedTweet.className = "publishedTweet";
-  var newTweet = document.getElementById("newTweet").value;
-  publishedTweet.textContent = newTweet;
+  var myNewTweet = document.getElementById("newTweet").value + document.getElementById("newTweetBox").value;
+  publishedTweet.textContent = myNewTweet;
   tweetConteiner.appendChild(publishedTweet);
 
   var interactOptions = document.createElement("div");
@@ -101,5 +168,11 @@ function publishTweet() {
 
   document.getElementById("feed").appendChild(feedTweet);   
   document.getElementById("newTweet").value = "";
+  document.getElementById("newTweetBox").value = "";
   document.getElementById("submit").setAttribute("disabled", "");
+  document.getElementById("submitBox").setAttribute("disabled", "");
+  document.getElementById("counter").innerHTML = "140";
+  document.getElementById("counterBox").innerHTML = "140";
+  document.getElementById("backColor").style.display = "none";
+  contract();
 }
