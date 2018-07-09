@@ -3,10 +3,19 @@ function validateTweet() {
   var counter = myNewTweet.length;
   document.getElementById("counter").innerHTML = 140 - counter;
   counter = document.getElementById("counter").innerHTML;
-  if(parseInt(counter) < 140) {
+  if(parseInt(counter) < 140 && parseInt(counter) >= 0) {
     document.getElementById("submit").removeAttribute("disabled");
   } else {
     document.getElementById("submit").setAttribute("disabled", "");
+  }
+  if(parseInt(counter) > 20) {
+    document.getElementById("counter").style.color = "#66757f";
+  }
+  if(parseInt(counter) <= 20 && parseInt(counter) > 10) {
+    document.getElementById("counter").style.color = "orange";
+  }
+  if (parseInt(counter) <= 10) {
+    document.getElementById("counter").style.color = "red";
   }
 }
 
