@@ -183,14 +183,15 @@ main section {
   border: 1px solid #93D7FA;
   border-radius: 10px;
   margin: 0 0 0 2%;
-  padding: 2% 0 0 1%;
+  padding: 2% 0;
   line-height: 100%;
   font-size: 110%;
   color: #1B95E0;
+  overflow: hidden;
 }
 #counter {
   position: absolute;
-  right: 20px;
+  right: 50px;
   bottom: 55px;
   width: fit-content;
   color: #66757f;

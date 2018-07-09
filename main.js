@@ -17,6 +17,17 @@ function validateTweet() {
   if (parseInt(counter) <= 10) {
     document.getElementById("counter").style.color = "red";
   }
+  resize()
+}
+
+function resize() {
+  var newTweet = document.getElementById("newTweet");
+  if(newTweet.scrollHeight > newTweet.offsetHeight) {
+    newTweet.rows += 1;
+  }
+  if(newTweet.scrollHeight < newTweet.offsetHeight) {
+    newTweet.rows -= 1;
+  }
 }
 
 function publishTweet() {
