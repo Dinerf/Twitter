@@ -7,14 +7,13 @@ newTweet.onblur = contract;
 newTweet.addEventListener("input", validateTweet);
 newTweet.addEventListener ("input", charCount);
 newTweet.addEventListener("input", resize);
-document.getElementById("submit").addEventListener("click", setTime);
 document.getElementById("submit").addEventListener("click", publishTweet);
 
 newTweetBox.addEventListener("input", validateTweet);
 newTweetBox.addEventListener ("input", charCount);
 newTweetBox.addEventListener("input", resize);
-document.getElementById("submitBox").addEventListener("click", setTime);
 document.getElementById("submitBox").addEventListener("click", publishTweet);
+
 document.getElementById("tweet").addEventListener("click", openTweetBox);
 document.getElementById("close").addEventListener("click", closeTweetBox);
 
@@ -37,10 +36,9 @@ function contract () {
   }
 }
 
-var counter = "";
 function validateTweet() {
   var myNewTweet = newTweet.value + newTweetBox.value;
-  counter = myNewTweet.length;
+  var counter = myNewTweet.length;
   document.getElementById("counter").innerHTML = 140 - counter;
   document.getElementById("counterBox").innerHTML = 140 - counter;
   counter = document.getElementById("counter").innerHTML;
@@ -57,10 +55,11 @@ function validateTweet() {
     document.getElementById("submit").setAttribute("disabled", "");
     document.getElementById("submitBox").setAttribute("disabled", "");
   }
+  return counter;
 }
 
 function charCount() {
-  counter = parseInt(counter);
+  counter = parseInt(validateTweet());
   if(counter > 20) {
     document.getElementById("counter").style.color = "#66757f";
     document.getElementById("counterBox").style.color = "#66757f";
@@ -82,7 +81,6 @@ function resize() {
   newTweetBox.style.height = newTweetBox.scrollHeight + "px";
 }
 
-var time = "";
 function setTime() {
   var data = new Date();
   var hour = JSON.stringify(data.getHours());
@@ -93,7 +91,7 @@ function setTime() {
   if(min.length === 1) {
     min = "0" + min;
   }
-  time = hour + ":" + min;
+  return time = hour + ":" + min;
 }
 
 function openTweetBox() {
@@ -137,7 +135,7 @@ function publishTweet() {
 
   var now = document.createElement("span");
   now.className = "now";
-  now.textContent = " - " + time;
+  now.textContent = " - " + setTime();
   tweetConteiner.appendChild(now);
   
   var publishedTweet = document.createElement("p");

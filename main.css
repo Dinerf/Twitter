@@ -25,7 +25,7 @@ header {
   justify-content: space-between;
 }
 header div {
-  width: 50%; 
+  width: 50%;
 }
 #navOptions {
   display: flex;
@@ -283,6 +283,8 @@ main section {
 }
 .publishedTweet {
   color: black;
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 .interactOptions {
   width: 50%;
