@@ -283,6 +283,7 @@ main section {
 }
 .publishedTweet {
   color: black;
+  white-space: pre-wrap;
 }
 .interactOptions {
   width: 50%;

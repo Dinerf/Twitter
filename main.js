@@ -7,14 +7,12 @@ newTweet.onblur = contract;
 newTweet.addEventListener("input", validateTweet);
 newTweet.addEventListener ("input", charCount);
 newTweet.addEventListener("input", resize);
-document.getElementById("submit").addEventListener("click", setTime);
-document.getElementById("submit").addEventListener("click", publishTweet);
+document.getElementById("submit").addEventListener("click", publishTweetCool);
 
 newTweetBox.addEventListener("input", validateTweet);
 newTweetBox.addEventListener ("input", charCount);
 newTweetBox.addEventListener("input", resize);
-document.getElementById("submitBox").addEventListener("click", setTime);
-document.getElementById("submitBox").addEventListener("click", publishTweet);
+document.getElementById("submitBox").addEventListener("click", publishTweetCool);
 document.getElementById("tweet").addEventListener("click", openTweetBox);
 document.getElementById("close").addEventListener("click", closeTweetBox);
 
@@ -38,24 +36,21 @@ function contract () {
 }
 
 var counter = "";
-function validateTweet() {
+function validateTweet(event) {
+  var suffix = "";
+  var target = event.target;
+
   var myNewTweet = newTweet.value + newTweetBox.value;
-  counter = myNewTweet.length;
-  document.getElementById("counter").innerHTML = 140 - counter;
-  document.getElementById("counterBox").innerHTML = 140 - counter;
-  counter = document.getElementById("counter").innerHTML;
-  counter = document.getElementById("counterBox").innerHTML;
+  counter = 140 - myNewTweet.length;
+  document.getElementById("counter" + suffix).innerHTML = counter;
   if(myNewTweet.trim().length > 0) {
     if(parseInt(counter) < 140 && parseInt(counter) >= 0) {
       document.getElementById("submit").removeAttribute("disabled");
-      document.getElementById("submitBox").removeAttribute("disabled");
     } else {
       document.getElementById("submit").setAttribute("disabled", "");
-      document.getElementById("submitBox").setAttribute("disabled", "");
     }
   } else {
     document.getElementById("submit").setAttribute("disabled", "");
-    document.getElementById("submitBox").setAttribute("disabled", "");
   }
 }
 
@@ -82,8 +77,7 @@ function resize() {
   newTweetBox.style.height = newTweetBox.scrollHeight + "px";
 }
 
-var time = "";
-function setTime() {
+function getTime() {
   var data = new Date();
   var hour = JSON.stringify(data.getHours());
   if(hour.length === 1) {
@@ -93,7 +87,7 @@ function setTime() {
   if(min.length === 1) {
     min = "0" + min;
   }
-  time = hour + ":" + min;
+  return hour + ":" + min;
 }
 
 function openTweetBox() {
@@ -110,6 +104,29 @@ function closeTweetBox() {
   document.getElementById("counterBox").innerHTML = "140";
   document.getElementById("backColor").style.display = "none";
   contract();
+}
+
+function publishTweetCool() {
+  var myNewTweet = document.getElementById("newTweet").value + document.getElementById("newTweetBox").value;
+  template = `
+    <img class="userPhoto" src="https://pbs.twimg.com/profile_images/2067911760/Untitled_4_400x400.jpg" alt="">
+    <div class="tweetConteiner">
+      <span class="name">Dine</span>
+      <span class="userName">@dinerf</span>
+      <span class="now">- ${getTime()}</span>
+      <p class="publishedTweet">${myNewTweet}</p>
+      <div class="interactOptions">
+        <i class="far fa-comment"></i>
+        <i class="fas fa-retweet"></i>
+        <i class="far fa-heart"></i>
+        <span class="icon-bar-chart-2"></span>
+      </div>
+    </div>
+  `
+  var feedTweet = document.createElement("div");
+  feedTweet.setAttribute("class", "feedTweet");
+  feedTweet.innerHTML = template;
+  document.getElementById("feed").appendChild(feedTweet);
 }
 
 function publishTweet() {
